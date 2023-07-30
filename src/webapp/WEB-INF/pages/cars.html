@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>model</th>
+        <th>series</th>
+        <th>speed</th>
+    </tr>
+    <tr th:each="tab : ${table}">
+        <td th:utext="${tab.getModel()}">model</td>
+        <td th:utext="${tab.getSeries()}">series</td>
+        <td th:utext="${tab.getSpeed()}">speed</td>
+    </tr>
+</table>
+</body>
+</html>
