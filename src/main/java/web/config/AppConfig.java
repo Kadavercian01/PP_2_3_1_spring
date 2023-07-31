@@ -2,7 +2,6 @@ package web.config;
 
 
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -24,7 +23,7 @@ import java.util.Properties;
 @ComponentScan(value = "web")
 public class AppConfig {
 
-    private Environment env;
+    private final Environment env;
 
     public AppConfig(Environment env) {
         this.env = env;
