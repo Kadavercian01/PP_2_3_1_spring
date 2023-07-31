@@ -13,7 +13,7 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
     // Метод, указывающий на класс конфигурации
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{WebConfig.class};
+        return null;
     }
 
 
@@ -33,19 +33,14 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
     }
 
     @Override
-    public void onStartup(ServletContext aservletContext) throws ServletException {
-        super.onStartup(aservletContext);
-        FilterRegistration.Dynamic encodingFilter = aservletContext.addFilter("encodingFilter", new CharacterEncodingFilter());
-        encodingFilter.setInitParameter("encoding", "UTF-8");
-        encodingFilter.setInitParameter("forceEncoding", "true");
-        encodingFilter.addMappingForUrlPatterns(null, true, "/*");
-        registerHiddenFieldFilter(aservletContext);
-
+    public void onStartup(ServletContext aServletContext) throws ServletException {
+        super.onStartup(aServletContext);
+        registerHiddenFieldFilter(aServletContext);
     }
 
-    private void registerHiddenFieldFilter(ServletContext aContext){
-        aContext.addFilter("HiddenHttpMethodFilter", new HiddenHttpMethodFilter())
-                .addMappingForUrlPatterns(null, true, "/*");
+    private void registerHiddenFieldFilter(ServletContext aContext) {
+        aContext.addFilter("hiddenHttpMethodFilter",
+                new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null ,true, "/*");
     }
 
 }

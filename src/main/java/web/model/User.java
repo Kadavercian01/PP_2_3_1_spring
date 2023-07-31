@@ -13,7 +13,6 @@ public class User {
     private String lastName;
     @Id
     @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id")
     private int id;
 
@@ -43,5 +42,14 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", id=" + id +
+                '}';
     }
 }

@@ -64,11 +64,6 @@ public class AppConfig {
         return transactionManager;
     }
 
-    @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
-        return new PersistenceExceptionTranslationPostProcessor();
-    }
-
     private Properties getHibernateProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.show_sql", "true");

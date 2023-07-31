@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Id</title>
+    <title>get</title>
 </head>
 <body>
 
@@ -13,7 +13,7 @@
 
 <a th:href="@{/users/{id}/edit(id=${user.getId()})}">Edit</a>
 
-<form th:method="delete" th:action="@{/user/{id}(id=${user.getId()})}">
+<form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
     <input type="submit" value="Delete"/>
 </form>
 

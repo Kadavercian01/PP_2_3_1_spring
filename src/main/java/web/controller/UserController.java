@@ -1,5 +1,6 @@
 package web.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +12,7 @@ import web.service.UserService;
 public class UserController {
 
     private UserService userService;
-
+    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -22,20 +23,21 @@ public class UserController {
         return "users";
     }
 
-    @GetMapping("/{id}/get")
+    @GetMapping("/{id}")
     public String getUser(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", userService.getUser(id));
         return "get";
     }
 
     @GetMapping("/new")
-    public String newUser(@ModelAttribute("user") User user) {
+    public String newUser(Model model) {
+        model.addAttribute("user", new User());
         return "new";
     }
 
     @PostMapping()
-    public String createUser(@ModelAttribute("user") User user) {
-        userService.createUser(user);
+    public String create(@ModelAttribute("user") User user) {
+        userService.save(user);
         return "redirect:/users";
     }
 
@@ -45,15 +47,15 @@ public class UserController {
         return "edit";
     }
 
-    @PatchMapping("/{id}/update")
-    public String updateUser(@ModelAttribute("user") User user) {
-        userService.updateUser(user);
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+        userService.update(id, user);
         return "redirect:/users";
     }
 
-    @DeleteMapping("/{id}/delete")
-    public String deleteUser(@PathVariable("id") int id) {
-        userService.deleteUser(id);
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") int id) {
+        userService.delete(id);
         return "redirect:/users";
     }
 }
